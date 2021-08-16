@@ -109,5 +109,5 @@ let isLadderFound=this.LaddersOnBoard.filter(ladder=>
 
 };
 //let curPosition=prompt("enter the currentPosition of player");
-const board=new Game(4);
-board.Play();
+const snakeNladder=new Game(4);
+snakeNladder.Play();
