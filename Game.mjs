@@ -4,15 +4,18 @@ import Snakes from "./components/Snakes.mjs";
 import Ladder from "./components/Ladder.mjs";       
 
 
-class Game{
+export default class Game{
 
-    constructor(startPosition)
+    constructor(startPosition,RollingDice)
     {
         
         this.currentPosition=startPosition;
         this.nextPosition=0;
         this.SnakesOnBoard=[];
         this.LaddersOnBoard=[];
+        this.setBoard();
+       // this.diceRollValue=this.DiceRoll();  
+       this.diceRollValue=RollingDice
     }
 
     getCurrentPosition(){
@@ -76,21 +79,22 @@ let isLadderFound=this.LaddersOnBoard.filter(ladder=>
 
    Play()
    {
-        this.setBoard();
-         let diceRollValue=this.DiceRoll();  
-         console.log("Dice Outcome :",diceRollValue);
-         if(diceRollValue+this.currentPosition==100){
+         
+         console.log("Dice Outcome :",this.diceRollValue);
+         if(this.diceRollValue+this.currentPosition==100){
             
-            this.nextPosition=this.currentPosition+diceRollValue;
+            this.nextPosition=this.currentPosition+this.diceRollValue;
             console.log("You Win",this.nextPosition);  
+            return this.nextPosition;
             } 
             
-        else if(diceRollValue<=TotalCells-this.currentPosition) {
+        else if(this.diceRollValue<=TotalCells-this.currentPosition) {
            
-            this.nextPosition=this.currentPosition+diceRollValue;
+            this.nextPosition=this.currentPosition+this.diceRollValue;
           
             if(this.CheckforSnakes(this.nextPosition)){
            this.nextPosition=this.CheckforSnakes(this.nextPosition).tail;
+
         
             }
            if(this.CheckforLadder(this.nextPosition)){
@@ -99,15 +103,26 @@ let isLadderFound=this.LaddersOnBoard.filter(ladder=>
            
            }
            console.log("New Position ",this.nextPosition);  
+           return this.nextPosition;
         }
         
         else{
             console.log("you just need ",TotalCells-this.currentPosition);
+            return this.nextPosition;
         }
    }
 
 
 };
 //let curPosition=prompt("enter the currentPosition of player");
-const snakeNladder=new Game(4);
-snakeNladder.Play();
+const snakeNladder1=new Game(3,4);
+snakeNladder1.Play();
+/*
+const snakesNladder2=new Game(4,5);
+snakesNladder2.Play(); 
+const snakesNladder3=new Game(96,4);
+snakesNladder3.Play();
+const snakesNladder4=new Game(96,5);
+snakesNladder4.Play();
+const snakesNladder5=new Game(60,5);
+snakesNladder5.Play();*/

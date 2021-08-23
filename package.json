@@ -2,11 +2,11 @@
   "name": "snakesandladders",
   "version": "1.0.0",
   "description": "",
-  "main": "Game.mjs",
+  "main": "SnakesAndLadders.mjs",
   "type": "module",
   "scripts": {
     "test": "jest",
-    "start": "node Game.mjs",
+    "start": "node SnakesAndLadders.mjs",
     "node": "npm start"
   },
   "author": "",
